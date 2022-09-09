@@ -1,10 +1,30 @@
 import './style.css';
 import Logo from '../../assets/logo.svg'
+import { useRef } from 'react';
+import api from '../../services/api';
+import { setItem } from '../../utils/storage';
+import { useNavigate } from 'react-router-dom';
 
 
 function LoginUsuario() {
+    const emailRef = useRef('');
+    const senhaRef = useRef('');
 
+    const navigate = useNavigate();
 
+    async function handleSubmit() {
+
+        try {
+            const resposta = await api.post('/login', { email: emailRef.current.value, senha: senhaRef.current.value })
+
+            setItem('token', resposta.data.token);
+            setItem('usuario', resposta.data.usuario.nome);
+
+            navigate('/caminhoPrincipal')
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <div className="App">
             <header className='header'>
@@ -28,19 +48,17 @@ function LoginUsuario() {
                     <span className='section-two_span'>
                         Login
                     </span>
-                    <label className='label' for='input_email'>E-mail</label>
-                    <input id='input_email' className='input' type='e-mail'></input>
-                    <label className='label' for='input_password'>Senha</label>
-                    <input id='input_password' className='input' type='password'></input>
-                    <button className='btn_section-two'>Entrar</button>
+                    <label className='label' htmlFor='input_email'>E-mail</label>
+                    <input id='input_email' className='input' type='e-mail' ref={emailRef}>
+
+                    </input>
+                    <label className='label' htmlFor='input_password'>Senha</label>
+                    <input id='input_password' className='input' type='password' ref={senhaRef}></input>
+                    <button onClick={() => handleSubmit()} className='btn_section-two'>Entrar</button>
                 </section>
             </div>
         </div>
     );
-
-
-
-
 }
 
 export default LoginUsuario;

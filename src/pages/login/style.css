@@ -124,10 +124,17 @@
 }
 
 .input {
+    all: unset;
+
     width: 449px;
     height: 63px;
     background: #FFFFFF;
     border: 1px solid #555555;
     border-radius: 5px;
     margin-bottom: 30px;
+
+    font-family: 'Rubik';
+    font-size: 20px;
+
+
 }

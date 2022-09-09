@@ -28,10 +28,10 @@ function LoginUsuario() {
                     <span className='section-two_span'>
                         Login
                     </span>
-                    <label className='label' for='email'>E-mail</label>
-                    <input className='input' type='e-mail'></input>
-                    <label className='label' for='password'>Senha</label>
-                    <input className='input' type='password'></input>
+                    <label className='label' for='input_email'>E-mail</label>
+                    <input id='input_email' className='input' type='e-mail'></input>
+                    <label className='label' for='input_password'>Senha</label>
+                    <input id='input_password' className='input' type='password'></input>
                     <button className='btn_section-two'>Entrar</button>
                 </section>
             </div>
